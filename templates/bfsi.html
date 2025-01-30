@@ -1,0 +1,31 @@
+{% extends 'course_base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="dcourse">
+    <div class="cordiv">
+        <div class="detail">
+            <img src="{% static 'img/courses/strategic-analysis2.jpg' %}" alt="">
+            <h2>Strategy in BFSI</h2>
+            <p>The BFSI sector is rapidly evolving, and businesses need strategic insights to stay competitive. This course will teach you how to use business analysis tools and frameworks to assess market trends, identify growth opportunities, and optimize business strategies within the BFSI industry. You’ll learn how to conduct risk assessments, develop business cases, and implement strategic initiatives that improve organizational performance. This course is perfect for those looking to understand how to drive innovation and efficiency in the BFSI space.</p>
+        </div>
+        <div class="formbox">
+            <div class="formimg"></div>
+            <div class="regform" id="regform">
+                <form action="" method="post" enctype="multipart/form-data">
+                    <input type="text" placeholder="Enter your name" required>
+                    <input type="email" placeholder="Enter your email" required>
+                    <input type="tel" placeholder="Enter your phone" required>
+                    <select name="" id="cour">
+                        <option value="">--Select Courses--</option>
+                        <option value="Strategy in BFSI">Strategy in BFSI</option>
+                    </select>
+                    <button type="submit" id="btnss">Apply</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
