@@ -1,14 +1,14 @@
 
 {
     "builds":[{
-        "src":"myproject/wsgi.py",
+        "src":"techanugraha/wsgi.py",
         "use":"@vercel/python",
         "config":{"maxLambdaSize":"25mb", "runtime": "python3.12"}
     }],
     "routes":[
         {
             "src":"/(.*)",
-            "dest":"myproject/wsgi.py"
+            "dest":"techanugraha/wsgi.py"
         }
     ]
 }
