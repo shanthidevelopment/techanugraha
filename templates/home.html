@@ -192,7 +192,7 @@
      </section>
     <!-- Services End -->
 
-    <!-- Courses Start -->
+    <!-- Courses Start -->  
      <section class="service" id="traning">
         <p class="what">What We Do</p>
         <p class="whats">Uncover the value of our <br> training programs</p>
@@ -200,66 +200,67 @@
         <div class="servdiv">
             <div class="serbox">
                 <img src="{% static 'img/courses/cpp.jpg' %}" alt="">
-                <a href="courses/cpp.html">C/C++ Programming</a>
+                <a href="{% url 'cpp' %}">C/C++ Programming</a>
             </div>
+            
             <div class="serbox">
                 <img src="{% static 'img/courses/java.jpg' %}" alt="">
-                <a href="courses/java.html">Java Development</a>
+                <a href="{% url 'java' %}">Java Development</a>
             </div>
             <div class="serbox">
                 <img src="{% static 'img/courses/py.jpg' %}" alt="">
-                <a href="courses/python.html">Python Programming</a>
+                <a href="{% url 'python' %}">Python Programming</a>
             </div>
             <div class="serbox">
                 <img src="{% static 'img/courses/web.jpg' %}" alt="">
-                <a href="courses/web.html">Web Development</a>
+                <a href="{% url 'web' %}">Web Development</a>
             </div>
             <div class="serbox">
                 <img src="{% static 'img/courses/mern.png' %}" alt="">
-                <a href="courses/mern.html">MEAN & MERN Full stack development</a>
+                <a href="{% url 'mern' %}">MEAN & MERN Full stack development</a>
             </div>
             <div class="serbox">
                 <img src="{% static 'img/courses/mob.jpg' %}" alt="">
-                <a href="courses/mob.html">Mobile App Development</a>
+                <a href="{% url 'mob' %}">Mobile App Development</a>
             </div>
             <div class="serbox">
                 <img src="{% static 'img/courses/ra.png' %}" alt="">
-                <a href="courses/react.html">ReactJS & AngularJS</a>
+                <a href="{% url 'react' %}">ReactJS & AngularJS</a>
             </div>
             <div class="serbox">
                 <img src="{% static 'img/courses/sql.jpg' %}" alt="">
-                <a href="courses/sql.html">SQL & No-SQL</a>
+                <a href="">SQL & No-SQL</a>
             </div>
         </div>
         <h3>Non-Technical Courses</h3>
         <div class="servdiv">
             <div class="serbox">
                 <img src="{% static 'img/courses/The-Key-eCommerce-Business-Models-JPEG-980x656.jpg' %}" alt="">
-                <a href="courses/ecom.html">E-Commerce Business Models and Strategies</a>
+                <a href="{% url 'ecom' %}">E-Commerce Business Models and Strategies</a>
             </div>
             <div class="serbox">
                 <img src="{% static 'img/courses/digital-marketing.jpg' %}" alt="">
-                <a href="courses/dm.html">Digital Marketing</a>
+                <a href="{% url 'dm' %}">Digital Marketing</a>
             </div>
             <div class="serbox">
                 <img src="{% static 'img/courses/ANALYTICS & REPORTING.jpg' %}" alt="">
-                <a href="courses/report.html">E-Commerce Analytics and Reporting</a>
+                <a href="{% url 'report' %}">E-Commerce Analytics and Reporting</a>
             </div>
             <div class="serbox">
                 <img src="{% static 'img/courses/CRM.jpg' %}" alt="">
-                <a href="courses/custom.html">Customer Relationship Management (CRM)</a>
+                <a href="{% url 'custom' %}">Customer Relationship Management (CRM)</a>
             </div>
             <div class="serbox">
                 <img src="{% static 'img/courses/BFSI.jpg' %}" alt="">
-                <a href="courses/business.html">Business Analysis</a>
+                <a href="{% url 'business' %}">Business Analysis</a>
             </div>
             <div class="serbox">
                 <img src="{% static 'img/courses/tax_compliance.jpg' %}" alt="">
-                <a href="courses/tax.html">Taxation and Compliance <br> in BFSI</a>
+                <a href="{% url 'tax' %}">Taxation and Compliance <br> in BFSI</a>
             </div>
             <div class="serbox">
                 <img src="{% static 'img/courses/strategic-analysis2.jpg' %}" alt="">
-                <a href="courses/bfsi.html">Strategy in BFSI</a>
+                <a href="{% url 'bfsi' %}">Strategy in BFSI</a>
             </div>
         </div>
      </section>
