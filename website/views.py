@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+import requests 
 
 
 
@@ -25,12 +26,23 @@ def access(request):
 
 @api_view(['POST'])
 def token(request):
-  content= {
-    "client_key": "FxEI1WEjJBYgXNbQ3rEcJTV0v0WQ",
-    "client_secret": "hsAUkbwgfMKtScEiu1LC601ZdPril50F"
-}
-  
-  return Response(content)
+  print('token api..')
+  key=request.headers.get('client_key')
+  secreat=request.headers.get('CLIENT_SECRET')
+  print('token api..1')
+
+  try:
+    responce=requests.post('https://sandbox-api.naanmudhalvan.in/api/v1/lms/client/token/',{      
+        "client_key": key,
+        "client_secret": secreat
+    })
+  except Exception as err:
+      print(err)
+    
+  print('token api.. end')
+
+  print(responce.json())  
+  return Response(responce.json())
 
 
 
