@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view,permission_classes
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 import requests 
 
@@ -22,28 +23,38 @@ def access(request):
 
 
 
-
-
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def token(request):
-  print('token api..')
-  key=request.headers.get('client_key')
-  secreat=request.headers.get('CLIENT_SECRET')
-  print('token api..1')
+    print('Token API hit...')
+    print("All Headers:", dict(request.headers))
+    # Get headers from request
+    key = request.headers.get('client_key')
+    secret = request.headers.get('client_secret')
+    print(key)
+    print(secret)
+    # Validate headers
+    if not key or not secret:
+        return Response({'error': 'client_key and client_secret are required in headers'}, status=400)
 
-  try:
-    responce=requests.post('https://sandbox-api.naanmudhalvan.in/api/v1/lms/client/token/',{      
-        "client_key": key,
-        "client_secret": secreat
-    })
-  except Exception as err:
-      print(err)
-    
-  print('token api.. end')
+    try:
+        # Send request to Naan Mudhalvan API
+        response = requests.post(
+            'https://sandbox-api.naanmudhalvan.in/api/v1/lms/client/token/',
+            headers={
+                'client_key': key,
+                'client_secret': secret
+            }
+        )
+        response.raise_for_status()
 
-  print(responce.json())  
-  return Response(responce.json())
+    except requests.exceptions.HTTPError as http_err:
+        return Response({'error': 'HTTP error', 'detail': str(http_err), 'response': response.text}, status=response.status_code)
+    except requests.exceptions.RequestException as req_err:
+        return Response({'error': 'Request failed', 'detail': str(req_err)}, status=500)
 
+    print('Token API completed.')
+    return Response(response.json())
 
 
 
