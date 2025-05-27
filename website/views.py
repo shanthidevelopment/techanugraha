@@ -1,4 +1,19 @@
 from django.shortcuts import render
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
+
+
+
+
+@api_view(['POST'])
+def access(request):
+  content= {
+  "access_status": True,
+  "access_url": "https://techanugrahagroup.in/courses/java/"
+}
+  
+  return Response(content)
 
 # Create your views here.
 def home(request):
