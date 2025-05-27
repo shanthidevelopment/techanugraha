@@ -15,6 +15,37 @@ def access(request):
   
   return Response(content)
 
+
+
+
+
+
+
+
+
+@api_view(['POST'])
+def token(request):
+  content= {
+    "client_key": "FxEI1WEjJBYgXNbQ3rEcJTV0v0WQ",
+    "client_secret": "hsAUkbwgfMKtScEiu1LC601ZdPril50F"
+}
+  
+  return Response(content)
+
+
+
+
+
+
+@api_view(['POST'])
+def subscribe(request):
+  content= {
+"subscription_registration_status": True,
+"subscription_reference_id": "123HJssjggI"
+}
+  
+  return Response(content)
+
 # Create your views here.
 def home(request):
     return render(request,"home.html")
