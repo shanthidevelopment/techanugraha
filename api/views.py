@@ -7,3 +7,12 @@ def demo(request):
         'msg':"Welcome to techanugraha"
     }
     return Response(content)
+
+@api_view(['POST'])
+def access(request):
+  content= {
+  "access_status": True,
+  "access_url": "https://techanugrahagroup.in/courses/java/"
+}
+  
+  return Response(content)
