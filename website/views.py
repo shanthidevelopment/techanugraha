@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view,permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-import requests 
+import requests  as http
 
 
 
@@ -24,37 +24,41 @@ def access(request):
 
 
 @api_view(['POST'])
-@permission_classes([AllowAny])
 def token(request):
     print('Token API hit...')
     print("All Headers:", dict(request.headers))
     # Get headers from request
-    key = request.headers.get('client_key')
-    secret = request.headers.get('client_secret')
+    key = request.data.get('client_key')
+    secret = request.data.get('client_secret')
+    print(request.data)
     print(key)
     print(secret)
-    # Validate headers
-    if not key or not secret:
-        return Response({'error': 'client_key and client_secret are required in headers'}, status=400)
-
+ 
     try:
         # Send request to Naan Mudhalvan API
-        response = requests.post(
-            'https://sandbox-api.naanmudhalvan.in/api/v1/lms/client/token/',
-            headers={
+        response = http.post(
+            'https://api.naanmudhalvan.tn.gov.in/api/v1/lms/client/token/',
+            json={
                 'client_key': key,
                 'client_secret': secret
             }
         )
         response.raise_for_status()
 
-    except requests.exceptions.HTTPError as http_err:
+    except http.exceptions.HTTPError as http_err:
         return Response({'error': 'HTTP error', 'detail': str(http_err), 'response': response.text}, status=response.status_code)
-    except requests.exceptions.RequestException as req_err:
+    except http.exceptions.RequestException as req_err:
         return Response({'error': 'Request failed', 'detail': str(req_err)}, status=500)
 
     print('Token API completed.')
-    return Response(response.json())
+
+    content={
+  "access_key": response.json()['token'],
+  "refresh_key": response.json()['refresh']
+}
+    
+
+    return Response(content)
 
 
 
