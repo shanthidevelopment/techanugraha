@@ -25,10 +25,9 @@ def access(request):
 
 @api_view(['POST'])
 def token(request):
-    # Get headers from request
     key = request.data.get('client_key')
     secret = request.data.get('client_secret') 
-    
+    print(key,secret)
     # Send request to Naan Mudhalvan API
     response = http.post(
             'https://api.naanmudhalvan.tn.gov.in/api/v1/lms/client/token/',
