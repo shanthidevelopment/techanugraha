@@ -3,10 +3,12 @@ from rest_framework.decorators import api_view,permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 import requests  as http
-import threading
+import asyncio
 
-tokens={}
-
+tokens={
+  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ4NTQ4NDU2LCJpYXQiOjE3NDg1NDQ4NTYsImp0aSI6IjI5MDg2ODE1OTg2ZDQxOGM4YTAxODk1OTFkNmEwMWY5IiwidXNlcl9pZCI6MzM5ODc1MSwiYXVkIjoibG9jYWxob3N0LDEyNy4wLjAuMSxhcGkubmFhbm11ZGhhbHZhbi50bi5nb3YuaW4sd3d3Lm5hYW5tdWRoYWx2YW4udG4uZ292LmluLHBvcnRhbC5uYWFubXVkaGFsdmFuLnRuLmdvdi5pbiwxMC4yMzYuMjMzLjE5OCwxOTIuMTY4LjguOSwxNjQuMTAwLjEzNC4zOSwxMC4yMzYuMjEwLjc3IiwiaXNzIjoiaHR0cHM6Ly93d3cubmFhbm11ZGhhbHZhbi50bi5nb3YuaW4vIn0.WmRoVcktpWpdy3uu17AlS0prHZWbaqWXd6HSIxeUHAk_bpcufba3JOX8wadfbnqRHJbMQz-FQwOf5FJ4RkVT3dmSBb2eGdb2QEsUZLq2SMc7JM4n-PbbbXlmP75H2BJiryJQlHEXa7C-AQlSA3qYvUWkyswjp6WUjRpIBeXplslrB7l8OVpLmCXsVwd5OOd-0-4ZtNVoiY6y7RHvMAKNIxb9Fw5F32bOUGchK1yhMtq3z2gk3IDPaphd2YAro4heGHN8TYxEnOBdHinEqgNDMIiyWwiK6CJc40u7dDfDe50_0iCSBWlt1yUz07XDtWaNQa82w4Go2pmTKfY5NZJjbg",
+  "refresh": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc0ODYzMTI1NiwiaWF0IjoxNzQ4NTQ0ODU2LCJqdGkiOiIwM2EyZTM5NTZlMDg0ZWNkYTFlZGY2NWEzOTlkNWZhNCIsInVzZXJfaWQiOjMzOTg3NTEsImF1ZCI6ImxvY2FsaG9zdCwxMjcuMC4wLjEsYXBpLm5hYW5tdWRoYWx2YW4udG4uZ292LmluLHd3dy5uYWFubXVkaGFsdmFuLnRuLmdvdi5pbixwb3J0YWwubmFhbm11ZGhhbHZhbi50bi5nb3YuaW4sMTAuMjM2LjIzMy4xOTgsMTkyLjE2OC44LjksMTY0LjEwMC4xMzQuMzksMTAuMjM2LjIxMC43NyIsImlzcyI6Imh0dHBzOi8vd3d3Lm5hYW5tdWRoYWx2YW4udG4uZ292LmluLyJ9.rbgH-XWufxMF-SBAY43bR6Ks3JMPIOJy40BGlm3q4NCSUMDYpx55Ulk5s03M9UWuJqQOb2IRdYJYnilH3TEtUUyCOLBedduYGCvdLLaITR7tvR02WW-vzdirb2WWgqdYFz9ASA9xBqkLXPDE9qIWOpRw6z_NLPkYG8aiBfGma0VFYmXO5vWhl5UA2YWY4E27CVdGVtNbfD4bSHsBJkJ2au4QWivUeYlQPPiXN7rQ_zA9OIJ-9zDnUuXn2oMHCoeiWu9Mi99ZNgK0gf0nSf9WbCKYlFHvJBJYaske_V_pBFrn_X4K71mtGYtAxSbsJGVYkxLkjedIdRf2jcKWhp1k0Q"
+}
 def getTokens(key,secret):
     global tokens
     print('getting token',key,secret)
@@ -29,7 +31,7 @@ def getTokens(key,secret):
 def access(request):
   content= {
   "access_status": True,
-  "access_url": "https://techanugrahagroup.in/courses/java/"
+  "access_url": "https://techanugrahagroup.in/courses/tax/"
 }
   
   return Response(content)
@@ -41,9 +43,8 @@ def token(request):
     # Get headers from request
     key = request.data.get('client_key')
     secret = request.data.get('client_secret') 
-
-    threading.Thread(target=getTokens,args=(key,secret)).start()
-    
+    global tokens
+    getTokens(key,secret)
     
     # Send request to Naan Mudhalvan API
     
