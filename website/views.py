@@ -4,7 +4,23 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 import requests  as http
 
+tokens={}
 
+def getTokens(key,secret):
+    global tokens
+    print('getting token',key,secret)
+    if(tokens.get('token')):
+        return tokens
+    response = http.post(
+            'https://api.naanmudhalvan.tn.gov.in/api/v1/lms/client/token/',
+            json={
+                'client_key': key,
+                'client_secret': secret
+            }
+        )
+    tokens = response.json() 
+    return tokens
+    
 
 
 
@@ -29,17 +45,10 @@ def token(request):
     key = request.data.get('client_key')
     secret = request.data.get('client_secret') 
 
+    data=getTokens(key,secret)
     
     # Send request to Naan Mudhalvan API
-    response = http.post(
-            'https://api.naanmudhalvan.tn.gov.in/api/v1/lms/client/token/',
-            json={
-                'client_key': key,
-                'client_secret': secret
-            }
-        )
-
-    data=response.json()  
+    
     
     return Response({
     "access_key": data['token'],
