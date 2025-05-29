@@ -3,6 +3,7 @@ from rest_framework.decorators import api_view,permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 import requests  as http
+import threading
 
 tokens={}
 
@@ -35,26 +36,22 @@ def access(request):
 
 
 
-
-
-
-
 @api_view(['POST'])
 def token(request):
     # Get headers from request
     key = request.data.get('client_key')
     secret = request.data.get('client_secret') 
 
-    data=getTokens(key,secret)
+    threading.Thread(target=getTokens,args=(key,secret)).start()
+    
     
     # Send request to Naan Mudhalvan API
     
     
     return Response({
-    "access_key": data['token'],
-    "refresh_key": data['refresh']
+    "access_key": tokens['token'],
+    "refresh_key": tokens['refresh']
     })
-    
     
 
 
