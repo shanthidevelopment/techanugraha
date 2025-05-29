@@ -25,40 +25,27 @@ def access(request):
 
 @api_view(['POST'])
 def token(request):
-    print('Token API hit...')
-    print("All Headers:", dict(request.headers))
     # Get headers from request
     key = request.data.get('client_key')
-    secret = request.data.get('client_secret')
-    print(request.data)
-    print(key)
-    print(secret)
- 
-    try:
-        # Send request to Naan Mudhalvan API
-        response = http.post(
+    secret = request.data.get('client_secret') 
+    
+    # Send request to Naan Mudhalvan API
+    response = http.post(
             'https://api.naanmudhalvan.tn.gov.in/api/v1/lms/client/token/',
             json={
                 'client_key': key,
                 'client_secret': secret
             }
         )
-        response.raise_for_status()
-
-    except http.exceptions.HTTPError as http_err:
-        return Response({'error': 'HTTP error', 'detail': str(http_err), 'response': response.text}, status=response.status_code)
-    except http.exceptions.RequestException as req_err:
-        return Response({'error': 'Request failed', 'detail': str(req_err)}, status=500)
 
     print('Token API completed.')
-
-    content={
-  "access_key": response.json()['token'],
-  "refresh_key": response.json()['refresh']
-}
+    data=response.json()  
     
 
-    return Response(content)
+    return Response({
+  "access_key": data['token'],
+  "refresh_key": data['refresh']
+})
 
 
 
