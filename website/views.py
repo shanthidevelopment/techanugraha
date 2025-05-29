@@ -12,8 +12,8 @@ tokens={
 def getTokens(key,secret):
     global tokens
     print('getting token',key,secret)
-    # if(tokens.get('token')):
-    #     return tokens
+    if(tokens.get('token')):
+        return tokens
     response = http.post(
             'https://api.naanmudhalvan.tn.gov.in/api/v1/lms/client/token/',
             json={
