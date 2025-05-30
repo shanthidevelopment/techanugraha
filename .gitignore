@@ -1,1 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Django-specific
+*.log
+*.pot
+*.pyc
+*.pyo
+*.db
+*.sqlite3
+*.sqlite
+local_settings.py
+# db.sqlite3
+
+# Media and static files (optional depending on your deployment)
+media/
+staticfiles/
+static/
+
+# Environment
+.env
 .venv/
+venv/
+ENV/
+env/
+*.env
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# Migrations (optional: keep them if versioning DB structure)
+*/migrations/*.py
+*/migrations/*.pyc
+!*/migrations/__init__.py

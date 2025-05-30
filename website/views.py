@@ -33,6 +33,7 @@ def access(request):
   "access_status": True,
   "access_url": "https://techanugrahagroup.in/courses/tax/"
 }
+  print(request.data)
   
   return Response(content)
 
