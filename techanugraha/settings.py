@@ -90,6 +90,20 @@ DATABASES = {
 }
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'shanthiit_techanugrahagroup',  # full DB name with prefix
+#         'USER': 'shanthiit_techanugraha',         # full DB user with prefix
+#         'PASSWORD': 'techanugraha',
+#         # 'HOST': '103.14.121.95',          # e.g., 162.241.216.XX or db.yourdomain.com
+#         'HOST': 'shanthiitsolution.com',          # e.g., 162.241.216.XX or db.yourdomain.com
+#         'PORT': '3306',
+        
+#     }
+# }
+
+
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
