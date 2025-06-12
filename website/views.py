@@ -90,6 +90,7 @@ def access(request):
             headers=headers
         )
         data = response.json()
+        print('result for get student status',data)
         verified = data.get('status', False)
         print(data)
     except Exception as e:
