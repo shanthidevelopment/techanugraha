@@ -9,6 +9,15 @@ WORKDIR /app
 # pwd in image is /app
 COPY requirements.txt ./
 
+
+RUN apt-get update && apt-get install -y \
+    gcc \
+    libpq-dev \
+    python3-dev \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+
 # now run the command to install dependencies from requirements file
 RUN pip install --no-cache-dir -r requirements.txt
 
