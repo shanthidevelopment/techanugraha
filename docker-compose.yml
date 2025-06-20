@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "80:8000"
+    volumes:
+      - .:/app
+      - dbdata:/app/db  # Persist `db.sqlite3` here
+
+    environment:
+      - PYTHONUNBUFFERED=1
+
+volumes:
+  dbdata:
