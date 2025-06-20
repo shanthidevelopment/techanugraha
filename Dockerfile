@@ -26,4 +26,9 @@ COPY . .
 # expose the port 8800
 EXPOSE 8000
 
+
+
 # everytime container is started, run this command
+
+# Run makemigrations, migrate, and then start the dev server
+CMD ["sh", "-c", "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
