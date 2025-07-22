@@ -56,6 +56,15 @@ import requests  # Make sure you're using `requests` library, not `http`
 # Assume `tokens` is defined somewhere in your code with the token key
 
 
+course_list={
+    "TECH0001":"https://techanugrahagroup.in/courses/tax/",
+    "TECH0002":"https://techanugrahagroup.in/courses/tax/",
+    "TECH0003":"https://techanugrahagroup.in/courses/tax/",
+
+}
+
+
+
 @api_view(['POST'])
 def access(request):
     # Log incoming data
@@ -70,6 +79,7 @@ def access(request):
 
     # Incoming student info
     studentInfo = request.data
+    course_id=studentInfo.get('course_id')
 
     # Prepare payload for external API
     payload = {
@@ -132,7 +142,7 @@ def access(request):
 
     return Response({
         "access_status": True,
-        "access_url": "https://techanugrahagroup.in/courses/tax/"
+        "access_url":course_list.get(course_id) or "https://techanugrahagroup.in/courses/tax/"
     })
 
 
