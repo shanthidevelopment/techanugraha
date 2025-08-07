@@ -19,6 +19,7 @@ urlpatterns = [
      path('courses/crm/', views.custom, name='custom'),
      path('courses/business/', views.business, name='business'),
     path('courses/tax/', views.tax, name='tax'),
+    path('course/access', views.access),
     path('course/access/', views.access),
     path('token/', views.token),
     path('course/subscribe/', views.subscribe),

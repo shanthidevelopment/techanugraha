@@ -60,6 +60,7 @@ course_list={
     "TECH0001":"https://techanugrahagroup.in/courses/tax/",
     "TECH0002":"https://techanugrahagroup.in/courses/tax/",
     "TECH0003":"https://techanugrahagroup.in/courses/tax/",
+    "TECH0004":"https://techanugrahagroup.in/courses/tax/",
 
 }
 
